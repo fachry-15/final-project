@@ -13,7 +13,14 @@ $cek = mysqli_num_rows($login);
 if ($cek > 0) {
     $_SESSION['username'] = $username;
     $_SESSION['status'] = "login";
+
     header("location:product-menu.php");
 } else {
-    header("location:form-login.php");
+    echo "
+    <script>
+        alert('Coba di Cek Lagi Sandinya');
+
+        // window.location = 'login_user.php';
+    </script>
+";
 }

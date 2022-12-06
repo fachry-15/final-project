@@ -1,5 +1,5 @@
 <?php
-include "config/koneksi.php";
+include "../../config/koneksi.php";
 
 $id = $_POST['id_brg'];
 $hp = $_POST['hp'];
@@ -15,7 +15,7 @@ if (mysqli_query($koneksi, $updatedata)) {
   echo " <div class='alert alert-success'>
         <strong>Success!</strong> Redirecting you back in 1 seconds.
       </div>
-    <meta http-equiv='refresh' content='1; url= product.php'/>  ";
+    <meta http-equiv='refresh' content='1; url= ../tambah_admin.php'/>  ";
 } else {
   echo ("Error description: " . mysqli_error($koneksi));
 }
@@ -54,6 +54,6 @@ function Upload_file()
   $namaFileBaru .= '.';
   $namaFileBaru .= $extensifile;
 
-  move_uploaded_file($tmpName, 'assets/image/product/' . $namaFileBaru);
+  move_uploaded_file($tmpName, '../../assets/image/product/' . $namaFileBaru);
   return $namaFileBaru;
 }

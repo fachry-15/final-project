@@ -1,5 +1,5 @@
 <?php
-include "config/koneksi.php";
+include "../../config/koneksi.php";
 
 $hp = $_POST['hp'];
 $merek = $_POST['merek'];
@@ -12,16 +12,16 @@ $tambah = mysqli_query($koneksi, "INSERT INTO products (nama_hp, merek, spesifik
 if ($tambah) {
     echo "
             <script>
-                alert('Horeee Kamu Udah Terdaftar !');
-                window.location = 'product.php';
+                alert('Horee Barang Sudah Ditambahkan !');
+                window.location = '../tambah_admin.php';
             </script>
         ";
 } else {
     echo "
             <script>
-                alert('Coba Kamu Cek lagi kamu gagal nih !');
+                alert('Barang Gagal Ditambahkan');
 
-                // window.location = 'product.php';
+                // window.location = '../tambah_admin.php';
             </script>
         ";
 }
@@ -62,6 +62,6 @@ function Upload_file()
     $namaFileBaru .= '.';
     $namaFileBaru .= $extensifile;
 
-    move_uploaded_file($tmpName, 'assets/image/product/' . $namaFileBaru);
+    move_uploaded_file($tmpName, '../../assets/image/product/' . $namaFileBaru);
     return $namaFileBaru;
 }

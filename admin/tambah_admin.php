@@ -1,5 +1,5 @@
 <?php
-include "config/koneksi.php";
+include "../config/koneksi.php";
 
 $product = array();
 
@@ -8,6 +8,13 @@ while ($setiap = $data->fetch_assoc()) {
     $hp[] = $setiap;
 }
 
+?>
+
+<?php
+session_start();
+if ($_SESSION['status'] != "login") {
+    header("location:tambah_admin.php?pesan=belum_login");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +27,7 @@ while ($setiap = $data->fetch_assoc()) {
     <meta name="author" content="" />
     <title>mPhone - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="assets/css/admin.css" rel="stylesheet" />
+    <link href="../assets/css/admin.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 
@@ -46,7 +53,7 @@ while ($setiap = $data->fetch_assoc()) {
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    <li><a class="dropdown-item" href="controller/logout-2.php">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -70,7 +77,7 @@ while ($setiap = $data->fetch_assoc()) {
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
-                    <div class="small">Halo</div>
+                    <div class="small">Halo <?php echo $_SESSION['username'] ?></div>
                 </div>
             </nav>
         </div>
@@ -95,7 +102,7 @@ while ($setiap = $data->fetch_assoc()) {
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="tambah.php" method="POST" enctype="multipart/form-data">
+                                    <form action="controller/tambah.php" method="POST" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1">Masukkan Nama Hp</label> <br>
                                             <input style="margin-top: 1%;" type="text" name="hp" class="form-control" placeholder="Masukkan Nama Hp"><br>
@@ -166,11 +173,11 @@ while ($setiap = $data->fetch_assoc()) {
                                             <td><?php echo $value['nama_hp'] ?></td>
                                             <td><?php echo $value['merek'] ?></td>
                                             <td><?php echo $value['spesifikasi'] ?></td>
-                                            <td><img src="assets/image/product/<?php echo $value['gambar'] ?>" alt="" style="max-width: 30px;"></td>
+                                            <td><img src="../assets/image/product/<?php echo $value['gambar'] ?>" alt="" style="max-width: 30px;"></td>
                                             <th scope="row">
 
                                                 <a href="update_admin.php?id=<?php echo $value["id_barang"] ?>" type="button" class="btn btn-primary btn-sm">Update</a>
-                                                <a href="hapus.php?id=<?php echo $value["id_barang"] ?>" type="button" class="btn btn-danger btn-sm">Hapus</a>
+                                                <a href="controller/hapus.php?id=<?php echo $value["id_barang"] ?>" type="button" class="btn btn-danger btn-sm">Hapus</a>
                                             </th>
 
                                         </tr>
@@ -191,11 +198,10 @@ while ($setiap = $data->fetch_assoc()) {
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+    <script src="../js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets/js/admin.js"></script>
+    <script src="../assets/js/admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
 </body>
 
 </html>

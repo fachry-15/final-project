@@ -1,10 +1,17 @@
 <?php
-include "config/koneksi.php";
+include "../config/koneksi.php";
 
 $product = $_GET["id"];
 
 $data = $koneksi->query("SELECT * FROM products WHERE id_barang= $product");
 $setiap = $data->fetch_assoc();
+?>
+
+<?php
+session_start();
+if ($_SESSION['status'] != "login") {
+    header("location:update_admin.php?pesan=belum_login");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +24,7 @@ $setiap = $data->fetch_assoc();
     <meta name="author" content="" />
     <title>mPhone - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="assets/css/admin.css" rel="stylesheet" />
+    <link href="../assets/css/admin.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 
@@ -67,7 +74,7 @@ $setiap = $data->fetch_assoc();
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
-                    <div class="small">Halo</div>
+                    <div class="small">Halo <?php echo $_SESSION['username'] ?></div>
                 </div>
             </nav>
         </div>
@@ -96,7 +103,7 @@ $setiap = $data->fetch_assoc();
                                 </div>
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">Masukkan Gambar Product</label> <br>
-                                    <img src="assets/image/product/<?php echo $value['gambar'] ?>" alt="" style="width: 90px; border: 2px solid black;"> <br>
+                                    <img src="../assets/image/product/<?php echo $value['gambar'] ?>" alt="" style="width: 90px; border: 2px solid black;"> <br>
                                     <input class="form-control" type="file" name="gambar" id="product" style="margin-top: 2%;">
                                 </div>
                                 <button type="submit" class="btn btn-warning">update</button>
@@ -117,11 +124,9 @@ $setiap = $data->fetch_assoc();
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets/js/admin.js"></script>
+    <script src="../assets/js/admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
 </body>
 
 </html>
