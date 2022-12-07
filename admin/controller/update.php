@@ -4,10 +4,11 @@ include "../../config/koneksi.php";
 $id = $_POST['id_brg'];
 $hp = $_POST['hp'];
 $merek = $_POST['merek'];
+$harga = $_POST['harga'];
 $spek = $_POST['spek'];
 $gambar = Upload_file();
 
-$updatedata = "UPDATE products set nama_hp='$hp', merek='$merek', spesifikasi='$spek', gambar='$gambar' WHERE id_barang='$id'";
+$updatedata = "UPDATE products set nama_hp='$hp', merek='$merek', harga='$harga', spesifikasi='$spek', gambar='$gambar' WHERE id_barang='$id'";
 mysqli_query($koneksi, $updatedata);
 
 if (mysqli_query($koneksi, $updatedata)) {

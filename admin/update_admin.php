@@ -86,7 +86,7 @@ if ($_SESSION['status'] != "login") {
                         <li class="breadcrumb-item active">Admin</li>
                     </ol>
                     <div class="container" style=" padding-right: 15%; margin-top: 2%;">
-                        <form action="update.php" method="POST">
+                        <form action="controller/update.php" method="POST">
                             <?php foreach ($data as $key => $value) : ?>
                                 <input type="hidden" class="form-control" name="id_brg" id="id_brg" aria-describedby="emailHelp" placeholder="Nama Handphone" value="<?php echo $value['id_barang'] ?>"> <br>
                                 <div class="form-group">
@@ -96,6 +96,14 @@ if ($_SESSION['status'] != "login") {
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Masukkan Merek Handphone</label>
                                     <input type="text" class="form-control" name="merek" id="merek" placeholder="iPhone/Samsung/Oppo" value="<?php echo $value['merek'] ?>"> <br>
+                                </div>
+                                <label for="exampleFormControlTextarea1">Masukkan Harga Produk</label> <br>
+                                <label class="sr-only" for="inlineFormInputGroupUsername2">Rp.</label>
+                                <div class="input-group mb-2 mr-sm-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Rp.</div>
+                                    </div>
+                                    <input type="text" name="harga" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Langsung Nominal tanpa Rupiah" value="<?php echo $value['harga'] ?>"><br>
                                 </div>
                                 <div class="mb-3" style="margin-bottom: 10%;">
                                     <label for="exampleFormControlTextarea1" class="form-label">Masukkan Spesifikasi</label>

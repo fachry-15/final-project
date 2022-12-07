@@ -94,7 +94,7 @@ if ($_SESSION['status'] != "login") {
                             <div class="card bg-primary text-white mb-4">
                                 <div class="card-body">Barang terdaftar</div>
                                 <div class="card-body">
-                                    <h2>20</h2>
+                                    <h2>21</h2>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <a class="small text-white stretched-link" href="tambah_admin.php">View Details</a>
