@@ -46,7 +46,7 @@ if ($_SESSION['status'] != "login") {
             <div class=" collapse navbar-collapse" id="navbarNavDropdown" style="margin-right: 5%;">
                 <ul class="navbar-nav ms-auto ">
                     <li class="nav-item">
-                        <a class="nav-link mx-2 active" aria-current="page" href="" style="color: black;">Home</a>
+                        <a class="nav-link mx-2 active" aria-current="page" href="index.php" style="color: black;">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-2" href="product-menu.php" style="color: black;">Products</a>
@@ -86,14 +86,14 @@ if ($_SESSION['status'] != "login") {
 
     <div class="container">
         <div class="contens">
-            <div class="image-container" onclick="location.href='https://www.apple.com/iphone-12/';" style="cursor: pointer;">
+            <div class="image-container" onclick="location.href='Produk_Terbaru/iPhone13.php';" style="cursor: pointer;">
                 <div class="iphone-12">
                     <div class="title">
-                        <h1>iPhone 13 Series</h1>
+                        <h1>iPhone 13 Pro</h1>
                         <p>Kini Hadir di Markas Phone</p>
                     </div>
                     <div class="cta-links">
-                        <a href="#" class="learn-more-link">Lihat Detail</a>
+                        <a href="Produk_Terbaru/iPhone13.php" class="learn-more-link">Lihat Detail</a>
 
                     </div>
                 </div>
@@ -111,7 +111,7 @@ if ($_SESSION['status'] != "login") {
                     <h2 class="headline" style="text-align: center; color: #FFFFFF;">Sobat Teknologi Banget !</h2>
                 </div>
                 <div class="cta-links">
-                    <a href="https://www.apple.com/apple-watch-series-6/" class="learn-more-link">Lihat Produk ></a>
+                    <a href="kategori/samsung.php" class="learn-more-link">Lihat Produk ></a>
                 </div>
                 <div class="unit-image">
                     <figure>
@@ -129,7 +129,7 @@ if ($_SESSION['status'] != "login") {
                     <h2 class="headline" style="text-align: center;">Buat Kamu si Paling Gamer.</h2>
                 </div>
                 <div class="cta-links">
-                    <a href="" class="learn-more-link">Lihat Produk ></a>
+                    <a href="kategori/oppo.php" class="learn-more-link">Lihat Produk ></a>
                 </div>
                 <div class="unit-image">
                     <figure>
@@ -147,7 +147,7 @@ if ($_SESSION['status'] != "login") {
                     <h2 class="headline" style="text-align: center; color: #FFFFFF;">Buat Kamu Yang Anti Mainstream !</h2>
                 </div>
                 <div class="cta-links">
-                    <a href="" class="learn-more-link">Lihat Produk ></a>
+                    <a href="kategori/pixel.php" class="learn-more-link">Lihat Produk ></a>
                 </div>
                 <div class="unit-image">
                     <figure>
@@ -165,7 +165,7 @@ if ($_SESSION['status'] != "login") {
                     <h2 class="headline" style="text-align: center;">Buat Kamu Yang Suka Simple <br>dan Elegan.</h2>
                 </div>
                 <div class="cta-links">
-                    <a href="" class="learn-more-link">Lihat Produk></a>
+                    <a href="kategori/iphone.php" class="learn-more-link">Lihat Produk></a>
                 </div>
                 <div class="unit-image">
                     <figure>

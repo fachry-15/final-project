@@ -47,7 +47,7 @@ if ($_SESSION['status'] != "login") {
             <div class=" collapse navbar-collapse" id="navbarNavDropdown" style="margin-right: 5%;">
                 <ul class="navbar-nav ms-auto ">
                     <li class="nav-item">
-                        <a class="nav-link mx-2 active" aria-current="page" href="" style="color: black;">Home</a>
+                        <a class="nav-link mx-2 active" aria-current="page" href="index.php" style="color: black;">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-2" href="product-menu.php" style="color: black;">Products</a>
