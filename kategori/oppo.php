@@ -1,10 +1,13 @@
 <?php
-include "config/koneksi.php";
+include "../config/koneksi.php";
 
-$product = $_GET["id"];
+$product = array();
 
-$data = $koneksi->query("SELECT * FROM products WHERE id_barang= $product");
-$setiap = $data->fetch_assoc();
+$data = $koneksi->query("SELECT * FROM products WHERE merek = 'Oppo'");
+while ($setiap = $data->fetch_assoc()) {
+    $hp[] = $setiap;
+}
+
 ?>
 
 <?php
@@ -13,20 +16,24 @@ if ($_SESSION['status'] != "login") {
     header("location:product-menu.php?pesan=belum_login");
 }
 ?>
+
+<?php  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>mPhone - Detail Produk</title>
-    <link rel="shortcut icon" href="assets/image/1665066751539.png" type="image/x-icon">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/product -1 .css">
+    <link rel="stylesheet" href="../assets/css/product -1 .css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha512-JRlcvSZAXT8+5SQQAvklXGJuxXTouyq8oIMaYERZQasB8SBDHZaUbeASsJWpk0UUrf89DP3/aefPPrlMR1h1yQ==" crossorigin="anonymous"></script>
+    <title>Samsung - mPhone</title>
+    <link rel="shortcut icon" href="../assets/image/1665066751539.png" type="image/x-icon">
 </head>
 
 <body>
@@ -40,7 +47,7 @@ if ($_SESSION['status'] != "login") {
             <div class=" collapse navbar-collapse" id="navbarNavDropdown" style="margin-right: 5%;">
                 <ul class="navbar-nav ms-auto ">
                     <li class="nav-item">
-                        <a class="nav-link mx-2 active" aria-current="page" href="" style=" color: black;">Home</a>
+                        <a class="nav-link mx-2 active" aria-current="page" href="../index.php" style="color: black;">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-2" href="product-menu.php" style="color: black;">Products</a>
@@ -69,63 +76,32 @@ if ($_SESSION['status'] != "login") {
             </div>
         </div>
     </nav>
-    <!-- Product section-->
-    <section class="py-5">
-        <div class="container px-4 px-lg-5 my-5">
-            <div class="row gx-4 gx-lg-5 align-items-center">
 
-                <?php foreach ($data as $key => $value) : ?>
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="assets/image/product/<?php echo $value['gambar'] ?>" alt="..." /></div>
-                    <div class="col-md-6">
-                        <div class="small mb-1"><?php echo $value['merek'] ?></div>
-                        <h1 class="display-5 fw-bolder"><?php echo $value['nama_hp'] ?></h1>
-                        <div class="fs-5 mb-5">
-                            <span>Rp.<?php echo $value['harga'] ?></span><br>
-                            <span class="text-muted">Stok : </span>
-                        </div>
-                        <p class="lead"><?php echo $value['spesifikasi'] ?></p>
-                    <?php endforeach ?>
-                    <form action="cart.php" method="POST" enctype="multipart/form-data">
-                        <div class="d-flex">
-
-                            <?php foreach ($data as $value) : ?>
-                                <input type="hidden" name="nama" value="<?= $value['nama_hp'] ?>">
-                                <input type="hidden" name="merek" value="<?= $value['merek'] ?>">
-                                <input type="hidden" name="harga" value="<?= $value['harga'] ?>">
-                                <input type="hidden" name="gambar" value="<?= $value['gambar'] ?>">
-                                <input id="quantity" name="jumlah" type="number" value="1" class="form-control quantity-input" style="width: 10%; margin-right: 2%;">
-                                <button class="btn btn-outline-dark flex-shrink-0" type="submit">
-                                    <i class="bi-cart-fill me-1"></i>
-                                    Masukkan Keranjang
-                                </button>
-                            <?php endforeach ?>
-
-                        </div>
-                    </form>
+    <section>
+        <div class="">
+            <div>
+                <div class="col-md-5 mx-auto">
+                    <div class="input-group" style="margin-top: 4%;">
+                        <input class="form-control border-end-0 border rounded-pill" type="search" id="example-search-input" placeholder=" Mau Cari Apa">
+                        <span class="input-group-append">
+                            <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
                     </div>
-
+                </div>
             </div>
-        </div>
+
     </section>
 
     <section>
-        <h1 class="display-5 fw-bolder" style="text-align: center;">Rekomendasi Produk</h1>
         <div class=" container py-5">
             <div class="row ">
-                <?php
-
-                $product = array();
-
-                $data = $koneksi->query("SELECT * FROM products WHERE merek = 'iPhone' AND id_barang >= 4");
-                while ($setiap = $data->fetch_assoc()) {
-                    $hp[] = $setiap;
-                }
-
-                foreach ($data as $key => $value) : ?>
+                <?php foreach ($data as $key => $value) : ?>
                     <div class="col-md-8" style="width: 24%; border-radius: 2px; margin-left: 1%; margin-bottom: 2%;">
                         <div class="card text-black">
-                            <img src="assets/image/merek/<?php echo $value['merek'] ?>.png" alt="" style="max-width: 20px; margin-left: 5%; margin-top: 3%;">
-                            <img src="assets/image/product/<?php echo $value['gambar'] ?>" class="card-img-top" alt="Apple Computer" style="margin-top: 8%; margin-left: 5%; width: 250px; align-items: center;" />
+                            <img src="../assets/image/merek/<?php echo $value['merek'] ?>.png" alt="" style="max-width: 20px; margin-left: 5%; margin-top: 3%;">
+                            <img src="../assets/image/product/<?php echo $value['gambar'] ?>" class="card-img-top" alt="Apple Computer" style="margin-top: 8%; margin-left: 5%; width: 250px; align-items: center;" />
                             <div class="card-body">
                                 <div class="text-center">
                                     <h5 class="card-title"><?php echo $value['nama_hp'] ?></h5>
@@ -145,7 +121,8 @@ if ($_SESSION['status'] != "login") {
             <p class="m-0 text-center text-white"> Gurungg ges Footer e sabar</p>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../assets/js/product.js"></script>
 </body>
 
 </html>

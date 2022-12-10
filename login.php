@@ -2,6 +2,11 @@
 
 session_start();
 
+if (isset($_SESSION['login'])) {
+    header("location: product-menu.php");
+    exit;
+}
+
 include "config/koneksi.php";
 
 $username = $_POST['username'];
@@ -14,7 +19,7 @@ if ($cek > 0) {
     $_SESSION['username'] = $username;
     $_SESSION['status'] = "login";
 
-    header("location:product-menu.php");
+    header("location:index.php");
 } else {
     echo "
     <script>

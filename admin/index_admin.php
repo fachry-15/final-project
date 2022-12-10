@@ -12,7 +12,7 @@ while ($setiap = $data->fetch_assoc()) {
 
 <?php
 session_start();
-if ($_SESSION['status'] != "login") {
+if ($_SESSION['admin'] != "login") {
     header("location:index_admin.php?pesan=belum_login");
 }
 ?>
@@ -74,6 +74,12 @@ if ($_SESSION['status'] != "login") {
                         <a class="nav-link" href="tambah_admin.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>
                             Tambah Barang
+                        </a>
+                        <a class="nav-link" href="keranjang.php">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-shop"></i>
+                            </div>
+                            Keranjang User
                         </a>
                     </div>
                 </div>
@@ -159,8 +165,9 @@ if ($_SESSION['status'] != "login") {
                                     <tr>
                                         <th scope="col">No.</th>
                                         <th scope="col">Produk</th>
-                                        <th scope="col">Merek</th>
                                         <th scope="col">Harga</th>
+                                        <th scope="col">Merek</th>
+                                        <th scope="col">Deskripsi</th>
                                         <th scope="col">Gambar</th>
                                     </tr>
                                 </thead>
@@ -174,6 +181,7 @@ if ($_SESSION['status'] != "login") {
 
                                             <th scope="row"><?php echo $no++ ?></th>
                                             <td><?php echo $value['nama_hp'] ?></td>
+                                            <td><?php echo $value['harga'] ?></td>
                                             <td><?php echo $value['merek'] ?></td>
                                             <td><?php echo $value['spesifikasi'] ?></td>
                                             <td><img src="../assets/image/product/<?php echo $value['gambar'] ?>" alt="" style="max-width: 30px;"></td>
