@@ -4,13 +4,13 @@ $username = $_POST['username'];
 $email = $_POST['email'];
 $password = md5($_POST['password']);
 
-$register = mysqli_query($koneksi, "INSERT INTO user (id_username, email, password) VALUES ('$username','$email','$password')");
+$register = mysqli_query($koneksi, "INSERT INTO user (username, email, password) VALUES ('$username','$email','$password')");
 
 if ($register) {
     echo "
             <script>
                 alert('Horeee Kamu Udah Terdaftar !');
-                window.location = 'form-login.php';
+                window.location = 'login_user.php';
             </script>
         ";
 } else {
@@ -18,7 +18,7 @@ if ($register) {
             <script>
                 alert('Coba Kamu Cek lagi kamu gagal nih !');
 
-                // window.location = 'form-login.php';
+                // window.location = 'login_user.php';
             </script>
         ";
 }

@@ -93,6 +93,7 @@ if ($_SESSION['status'] != "login") {
                                 <input type="hidden" name="merek" value="<?= $value['merek'] ?>">
                                 <input type="hidden" name="harga" value="<?= $value['harga'] ?>">
                                 <input type="hidden" name="gambar" value="<?= $value['gambar'] ?>">
+                                <input type="hidden" name="status" value="keranjang">
                                 <input id="quantity" name="jumlah" type="number" value="1" class="form-control quantity-input" style="width: 10%; margin-right: 2%;">
                                 <button class="btn btn-outline-dark flex-shrink-0" type="submit">
                                     <i class="bi-cart-fill me-1"></i>

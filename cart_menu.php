@@ -10,7 +10,7 @@ include "config/koneksi.php";
 
 $product = array();
 
-$data = $koneksi->query("SELECT * FROM tb_pembelian");
+$data = $koneksi->query("SELECT * FROM tb_pembelian WHERE status = 'keranjang'");
 while ($setiap = $data->fetch_assoc()) {
     $hp[] = $setiap;
 }
@@ -27,7 +27,9 @@ while ($setiap = $data->fetch_assoc()) {
     <title>mPhone - Detail Produk</title>
     <link rel="shortcut icon" href="assets/image/1665066751539.png" type="image/x-icon">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/product -1 .css">
 </head>
@@ -76,7 +78,7 @@ while ($setiap = $data->fetch_assoc()) {
         <section class="shopping-cart dark">
             <div class="container">
                 <div class="block-heading">
-
+                    <h1 style="color: black; font-size: 60px;"><b>Keranjang Anda</b></h1>
                 </div>
                 <div class="content">
                     <div class="row">
@@ -86,7 +88,7 @@ while ($setiap = $data->fetch_assoc()) {
                                     <div class="row">
                                         <?php foreach ($data as $key => $value) : ?>
                                             <div class="col-md-3">
-                                                <img class="img-fluid mx-auto d-block image" src="assets/image/product/<?php echo $value['gambar'] ?>">
+                                                <a href="detail.php?id=<?php echo $value["id_pembelian"] ?>"><img class="img-fluid mx-auto d-block image" src="assets/image/product/<?php echo $value['gambar'] ?>"></a>
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="info">
@@ -109,6 +111,10 @@ while ($setiap = $data->fetch_assoc()) {
                                                         <div class="col-md-3 price">
                                                             <span>Rp.<?php echo $value['harga'] ?></span>
                                                         </div>
+                                                        <div class="col-md-3 price">
+                                                            <a href="hapus_barang.php?id=<?php echo $value["id_pembelian"] ?>" style="color: black; font-size: 18px;"><button type="button" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i> Hapus</button>
+                                                            </a>
+                                                        </div>
 
                                                     </div>
                                                 </div>
@@ -123,7 +129,7 @@ while ($setiap = $data->fetch_assoc()) {
                                 <h3>Total Belanja Anda</h3>
                                 <div class="summary-item"><span class="text">Total</span><span class="price">Rp.</span></div>
                                 <button class="btn btn-outline-dark flex-shrink-0" type="submit" style="margin-left: 30%; margin-top: 10%;">
-                                    <i class="bi-cart-fill me-1"></i>
+                                    <i class="fa-solid fa-bag-shopping"></i>
                                     Beli Sekarang
                                 </button>
                             </div>
@@ -134,8 +140,7 @@ while ($setiap = $data->fetch_assoc()) {
         </section>
     </main>
 </body>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
