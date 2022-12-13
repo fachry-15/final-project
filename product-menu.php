@@ -37,9 +37,10 @@ if ($_SESSION['status'] != "login") {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark p-3" style="background-color: #EDE1EF;">
+
+    <nav class="navbar navbar-expand-lg navbar-dark p-3" style="background-color: #EDE1EF; font-weight: initial; font-style: oblique;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" style="color: black;" href="#">mPhone</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -70,7 +71,7 @@ if ($_SESSION['status'] != "login") {
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="#" style="color: black;"><i class="fa-solid fa-basket-shopping"></i></a>
+                        <a class="nav-link mx-2" href="cart_menu.php" style="color: black;"><i class="fa-solid fa-basket-shopping"></i></a>
                     </li>
                 </ul>
             </div>
@@ -114,7 +115,7 @@ if ($_SESSION['status'] != "login") {
                                 <div class="text-center">
                                     <h5 class="card-title"><?php echo $value['nama_hp'] ?></h5>
                                     <p class="text-muted mb-2.5"><?php echo $value['merek'] ?></p>
-                                    <p class="text-muted mb-1">Rp.<?php echo $value['harga'] ?></p>
+                                    <p class="text-muted mb-1">Rp.<?php echo number_format($value['harga']) ?></p>
                                     <a href="detail.php?id=<?php echo $value["id_barang"] ?>" type="button" class="btn" style="background-color: #EDE1EF;">Lihat Detail</a>
                                 </div>
                             </div>
