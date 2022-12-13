@@ -13,7 +13,13 @@ $product = array();
 $data = $koneksi->query("SELECT * FROM tb_pembelian WHERE status = 'keranjang'");
 while ($setiap = $data->fetch_assoc()) {
     $hp[] = $setiap;
+    $jumlah = $setiap['jumlah'];
+    $harga = $setiap['harga'];
+    $subharga = $setiap['harga'] * $setiap['jumlah'];
+    $semua[] = $subharga;
+    $total = array_sum($semua);
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -24,7 +30,7 @@ while ($setiap = $data->fetch_assoc()) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>mPhone - Detail Produk</title>
+    <title>mPhone - Keranjang</title>
     <link rel="shortcut icon" href="assets/image/1665066751539.png" type="image/x-icon">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
@@ -35,9 +41,10 @@ while ($setiap = $data->fetch_assoc()) {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark p-3" style="background-color: #EDE1EF;">
+
+    <nav class="navbar navbar-expand-lg navbar-dark p-3" style="background-color: #EDE1EF; font-weight: initial; font-style: oblique;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" style="color: black;" href="#">mPhone</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -45,7 +52,7 @@ while ($setiap = $data->fetch_assoc()) {
             <div class=" collapse navbar-collapse" id="navbarNavDropdown" style="margin-right: 5%;">
                 <ul class="navbar-nav ms-auto ">
                     <li class="nav-item">
-                        <a class="nav-link mx-2 active" aria-current="page" href="" style=" color: black;">Home</a>
+                        <a class="nav-link mx-2 active" aria-current="page" href="index.php" style="color: black;">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-2" href="product-menu.php" style="color: black;">Products</a>
@@ -68,12 +75,13 @@ while ($setiap = $data->fetch_assoc()) {
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="#" style="color: black;"><i class="fa-solid fa-basket-shopping"></i></a>
+                        <a class="nav-link mx-2" href="cart_menu.php" style="color: black;"><i class="fa-solid fa-basket-shopping"></i></a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
     <main class="page">
         <section class="shopping-cart dark">
             <div class="container">
@@ -86,7 +94,9 @@ while ($setiap = $data->fetch_assoc()) {
                             <div class="items">
                                 <div class="product">
                                     <div class="row">
-                                        <?php foreach ($data as $key => $value) : ?>
+
+                                        <?php
+                                        foreach ($data as $key => $value) : ?>
                                             <div class="col-md-3">
                                                 <a href="detail.php?id=<?php echo $value["id_pembelian"] ?>"><img class="img-fluid mx-auto d-block image" src="assets/image/product/<?php echo $value['gambar'] ?>"></a>
                                             </div>
@@ -106,10 +116,10 @@ while ($setiap = $data->fetch_assoc()) {
                                                         </div>
                                                         <div class="col-md-4 quantity">
                                                             <label for="quantity">Jumlah:</label>
-                                                            <input id="quantity" type="number" value="<?php echo $value['jumlah'] ?>" class="form-control quantity-input">
+                                                            <input id="quantity" type="number" value="<?php echo $value['jumlah'] ?>" class="form-control quantity-input" readonly style="width: 24%; text-align: center;">
                                                         </div>
                                                         <div class="col-md-3 price">
-                                                            <span>Rp.<?php echo $value['harga'] ?></span>
+                                                            <span>Rp.<?php echo number_format($value['harga'] * $value['jumlah'])  ?></span>
                                                         </div>
                                                         <div class="col-md-3 price">
                                                             <a href="hapus_barang.php?id=<?php echo $value["id_pembelian"] ?>" style="color: black; font-size: 18px;"><button type="button" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i> Hapus</button>
@@ -126,12 +136,30 @@ while ($setiap = $data->fetch_assoc()) {
                         </div>
                         <div class="col-md-12 col-lg-4">
                             <div class="summary">
+                                <?php
+
+                                $data ?>
                                 <h3>Total Belanja Anda</h3>
-                                <div class="summary-item"><span class="text">Total</span><span class="price">Rp.</span></div>
-                                <button class="btn btn-outline-dark flex-shrink-0" type="submit" style="margin-left: 30%; margin-top: 10%;">
-                                    <i class="fa-solid fa-bag-shopping"></i>
-                                    Beli Sekarang
-                                </button>
+                                <div class="summary-item"><span class="text">Total</span><span class="price">Rp. <?php echo number_format($total) ?></span></div>
+
+                                <form action="">
+                                    <?php
+                                    foreach ($data as $key => $value) : ?>
+                                        <input type="hidden" value="<?php echo $_SESSION['username'] ?>">
+                                        <input type="hidden" name="" id="" value="<?php echo $value['barang'] ?>">
+                                        <input type="hidden" name="" value="<?php echo $value['harga'] * $value['jumlah']  ?>">
+                                        <input type="hidden" name="" value="<?php echo $value['merek'] ?>">
+                                        <input type="hidden" name="" value="<?php echo $value['jumlah'] ?>">
+                                    <?php endforeach ?>
+                                    <input type="hidden">
+                                    <a href="checkout_menu.php?user=<?php echo $_SESSION['username'] ?>" class="btn btn-outline-dark flex-shrink-0" type="submit" style="margin-left: 30%; margin-top: 10%;">
+                                        <i class="fa-solid fa-bag-shopping"></i>
+                                        Beli Sekarang
+                                    </a>
+
+                                </form>
+
+                                <?php  ?>
                             </div>
                         </div>
                     </div>

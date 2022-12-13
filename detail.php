@@ -30,9 +30,10 @@ if ($_SESSION['status'] != "login") {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark p-3" style="background-color: #EDE1EF;">
+
+    <nav class="navbar navbar-expand-lg navbar-dark p-3" style="background-color: #EDE1EF; font-weight: initial; font-style: oblique;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" style="color: black;" href="#">mPhone</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -40,7 +41,7 @@ if ($_SESSION['status'] != "login") {
             <div class=" collapse navbar-collapse" id="navbarNavDropdown" style="margin-right: 5%;">
                 <ul class="navbar-nav ms-auto ">
                     <li class="nav-item">
-                        <a class="nav-link mx-2 active" aria-current="page" href="" style=" color: black;">Home</a>
+                        <a class="nav-link mx-2 active" aria-current="page" href="index.php" style="color: black;">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-2" href="product-menu.php" style="color: black;">Products</a>
@@ -63,12 +64,13 @@ if ($_SESSION['status'] != "login") {
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="#" style="color: black;"><i class="fa-solid fa-basket-shopping"></i></a>
+                        <a class="nav-link mx-2" href="cart_menu.php" style="color: black;"><i class="fa-solid fa-basket-shopping"></i></a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
     <!-- Product section-->
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
@@ -80,7 +82,7 @@ if ($_SESSION['status'] != "login") {
                         <div class="small mb-1"><?php echo $value['merek'] ?></div>
                         <h1 class="display-5 fw-bolder"><?php echo $value['nama_hp'] ?></h1>
                         <div class="fs-5 mb-5">
-                            <span>Rp.<?php echo $value['harga'] ?></span><br>
+                            <span>Rp.<?php echo number_format($value['harga'])  ?></span><br>
                             <span class="text-muted">Stok : </span>
                         </div>
                         <p class="lead"><?php echo $value['spesifikasi'] ?></p>
