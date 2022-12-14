@@ -91,6 +91,7 @@ if ($_SESSION['status'] != "login") {
                         <div class="d-flex">
 
                             <?php foreach ($data as $value) : ?>
+                                <input type="hidden" name="user" value="<?= $_SESSION['username'] ?>">
                                 <input type="hidden" name="nama" value="<?= $value['nama_hp'] ?>">
                                 <input type="hidden" name="merek" value="<?= $value['merek'] ?>">
                                 <input type="hidden" name="harga" value="<?= $value['harga'] ?>">

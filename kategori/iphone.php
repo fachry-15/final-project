@@ -106,8 +106,8 @@ if ($_SESSION['status'] != "login") {
                                 <div class="text-center">
                                     <h5 class="card-title"><?php echo $value['nama_hp'] ?></h5>
                                     <p class="text-muted mb-2.5"><?php echo $value['merek'] ?></p>
-                                    <p class="text-muted mb-1">Rp.<?php echo $value['harga'] ?></p>
-                                    <a href="../detail.php?id=<?php echo $value["id_barang"] ?>" type="button" class="btn" style="background-color: #EDE1EF;">Lihat Detail</a>
+                                    <p class="text-muted mb-1">Rp.<?php echo number_format($value['harga']) ?></p>
+                                    <a href="../detail.php?id=<?php echo $value["id_barang"]  ?>" type="button" class="btn" style="background-color: #EDE1EF;">Lihat Detail</a>
                                 </div>
                             </div>
                         </div>

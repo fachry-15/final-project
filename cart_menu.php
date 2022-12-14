@@ -1,16 +1,15 @@
 <?php
+include "config/koneksi.php";
 session_start();
+$user = $_SESSION['username'];
 if ($_SESSION['status'] != "login") {
     header("location:product-menu.php?pesan=belum_login");
 }
-?>
 
-<?php
-include "config/koneksi.php";
 
 $product = array();
 
-$data = $koneksi->query("SELECT * FROM tb_pembelian WHERE status = 'keranjang'");
+$data = $koneksi->query("SELECT * FROM tb_pembelian WHERE username = '$user' AND status = 'keranjang'");
 while ($setiap = $data->fetch_assoc()) {
     $hp[] = $setiap;
     $jumlah = $setiap['jumlah'];
