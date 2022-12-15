@@ -1,34 +1,21 @@
-<!-- <?php
-        include "config/koneksi.php";
-
-        $product = array();
-
-        $data = $koneksi->query("SELECT * FROM products");
-        while ($setiap = $data->fetch_assoc()) {
-            $hp[] = $setiap;
-        }
-
-        ?> -->
-
 <?php
+include "config/koneksi.php";
 session_start();
+$user = $_SESSION['username'];
 if ($_SESSION['status'] != "login") {
     header("location:product-menu.php?pesan=belum_login");
 }
-?>
 
-<?php
-include "config/koneksi.php";
 
-$user = array();
+$product = array();
 
-$akun = $_SESSION['username'];
-$nama[] = $akun;
+$data = $koneksi->query("SELECT * FROM user WHERE username = '$user'");
+while ($setiap = $data->fetch_assoc()) {
+    $hp[] = $setiap;
+}
 
-$pengguna = $koneksi->query("SELECT * FROM user WHERE username = $akun");
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,12 +76,8 @@ $pengguna = $koneksi->query("SELECT * FROM user WHERE username = $akun");
     </nav>
 
     <div class="container-xl px-4 mt-4">
-        <!-- Account page navigation-->
         <nav class="nav nav-borders">
-            <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details" target="__blank">Profile</a>
-            <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-billing-page" target="__blank">Billing</a>
-            <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page" target="__blank">Security</a>
-            <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page" target="__blank">Notifications</a>
+            <a class="nav-link active ms-0" href="" target="__blank">Profile</a>
         </nav>
         <hr class="mt-0 mb-4">
         <div class="row">
@@ -103,60 +86,30 @@ $pengguna = $koneksi->query("SELECT * FROM user WHERE username = $akun");
                 <div class="card mb-4">
                     <div class="card-header">Account Details</div>
                     <div class="card-body">
-                        <form>
-                            <?php $pengguna ?>
-                            <!-- Form Group (username)-->
-                            <div class="mb-3">
-                                <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
-                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="<?php echo $pengguna['username'] ?>">
-                            </div>
-                            <!-- Form Row-->
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (first name)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputFirstName">First name</label>
-                                    <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="Valerie">
+                        <form action="profile.php" method="POST" enctype="multipart/form-data">
+                            <?php
+                            foreach ($data as $key => $value) : ?>
+                                <input type="hidden" name="id" value="<?php echo $value['id_user'] ?>">
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputUsername">Username</label>
+                                    <input class="form-control" id="inputUsername" name="username" type="text" placeholder="Masukkan Username Anda" value="<?php echo $value['username'] ?>">
                                 </div>
-                                <!-- Form Group (last name)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputLastName">Last name</label>
-                                    <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="Luna">
+                                <label class="small mb-1" for="inputUsername">Email</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addonnemail">@</span>
+                                    <input type="text" class="form-control" name="email" placeholder="email anda" aria-label="Username" aria-describedby="basic-addonemail" value="<?php echo $value['email'] ?>">
                                 </div>
-                            </div>
-                            <!-- Form Row        -->
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (organization name)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputOrgName">Organization name</label>
-                                    <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap">
+                                <label class="small mb-1" for="inputUsername">No. Telepon</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addonnomor">(+62)</span>
+                                    <input type="text" class="form-control" name="nomor" placeholder="No. Telepon Anda" aria-label="Username" aria-describedby="basic-addonnomor" value="<?php echo $value['No_telepon'] ?>">
                                 </div>
-                                <!-- Form Group (location)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputLocation">Location</label>
-                                    <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="San Francisco, CA">
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputUsername">Alamat</label>
+                                    <input class="form-control" id="inputUsername" type="text" name="alamat" placeholder="Masukkan Alamat Anda" value="<?php echo $value['Alamat_utama'] ?>">
                                 </div>
-                            </div>
-                            <!-- Form Group (email address)-->
-                            <div class="mb-3">
-                                <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com">
-                            </div>
-                            <!-- Form Row-->
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (phone number)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputPhone">Phone number</label>
-                                    <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567">
-                                </div>
-                                <!-- Form Group (birthday)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                    <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
-                                </div>
-                            </div>
-                            <!-- Save changes button-->
-                            <button class="btn btn-primary" type="button">Save changes</button>
-                            <?php  ?>
+                                <button class="btn btn-success" type="submit">Simpan Data</button>
+                            <?php endforeach ?>
                         </form>
                     </div>
                 </div>
