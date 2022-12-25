@@ -30,6 +30,7 @@ if ($_SESSION['status'] != "login") {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/product -1 .css">
+    <link rel="stylesheet" href="assets/css/products.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha512-JRlcvSZAXT8+5SQQAvklXGJuxXTouyq8oIMaYERZQasB8SBDHZaUbeASsJWpk0UUrf89DP3/aefPPrlMR1h1yQ==" crossorigin="anonymous"></script>
     <title>Product - mPhone</title>
@@ -61,8 +62,8 @@ if ($_SESSION['status'] != "login") {
                             Hai <?php echo $_SESSION['username'] ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-circle-user" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Profile</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Settings</a>
+                            <li><a class="dropdown-item" href="profile_user.php"><i class="fa-solid fa-circle-user" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Pembelian Anda</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -92,15 +93,6 @@ if ($_SESSION['status'] != "login") {
                     </div>
                 </div>
             </div>
-            <div class="container" style="margin-top: 1%;">
-                <div class="row no-gutters">
-                    <div class="filtering col-sm-12 text-center">
-                        <span data-filter="*" class="active">All</span>
-                        <span data-filter=".architecture" class="">iPhone</span>
-                        <span data-filter=".decor" class="">Samsung</span>
-                        <span data-filter=".interior" class="">Xiaomi</span>
-                        <span data-filter=".interior" class="">Oppo</span>
-                    </div>
     </section>
 
     <section>
@@ -116,7 +108,14 @@ if ($_SESSION['status'] != "login") {
                                     <h5 class="card-title"><?php echo $value['nama_hp'] ?></h5>
                                     <p class="text-muted mb-2.5"><?php echo $value['merek'] ?></p>
                                     <p class="text-muted mb-1">Rp.<?php echo number_format($value['harga']) ?></p>
-                                    <a href="detail.php?id=<?php echo $value["id_barang"] ?>" type="button" class="btn" style="background-color: #EDE1EF;">Lihat Detail</a>
+                                    <a href="detail.php?id=<?php echo $value['id_barang'] ?>" class="cssbuttons-io-button"> Lihat Detail
+                                        <div class="icon">
+                                            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path>
+                                            </svg>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>

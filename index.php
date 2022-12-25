@@ -13,7 +13,7 @@ while ($setiap = $data->fetch_assoc()) {
 <?php
 session_start();
 if ($_SESSION['status'] != "login") {
-    header("location:product-menu.php?pesan=belum_login");
+    header("location:login_user.php?pesan=Tolong_Login_Telebih_Dahulu");
 }
 ?>
 <!doctype html>
@@ -58,8 +58,8 @@ if ($_SESSION['status'] != "login") {
                             Hai <?php echo $_SESSION['username'] ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-circle-user" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Profile</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Settings</a>
+                            <li><a class="dropdown-item" href="profile_user.php"><i class="fa-solid fa-circle-user" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Profile</a></li>
+                            <li><a class="dropdown-item" href="Belanjaan.php"><i class="fa-solid fa-gear" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Pembelian Anda</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">

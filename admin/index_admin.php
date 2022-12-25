@@ -6,6 +6,20 @@ $product = array();
 $data = $koneksi->query("SELECT * FROM products");
 while ($setiap = $data->fetch_assoc()) {
     $hp[] = $setiap;
+    $jumlah_barang = count($hp);
+}
+
+?>
+
+<?php
+include "../config/koneksi.php";
+
+$product = array();
+
+$semua = $koneksi->query("SELECT * FROM tb_invoice");
+while ($setiap = $semua->fetch_assoc()) {
+    $barang[] = $setiap;
+    $jumlah_penjualan = count($barang);
 }
 
 ?>
@@ -29,43 +43,21 @@ if ($_SESSION['admin'] != "login") {
     <title>mPhone - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="../assets/css/admin.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Admin</a>
-        <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-        <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <!-- <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button> -->
-            </div>
-        </form>
-        <!-- Navbar-->
-        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
-                    <li><a class="dropdown-item" href="controller/logout-2.php">Logout</a></li>
-                </ul>
-            </li>
-        </ul>
+        <a class="navbar-brand ps-3" href="index_admin.php">Admin</a>
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="index.html" style="color: white;">
+                        <div class="sb-sidenav-menu-heading">Utama</div>
+                        <a class="nav-link" href="index_admin.php" style="color: white;">
                             <div class="sb-nav-link-icon" style="color: white;"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
@@ -80,6 +72,12 @@ if ($_SESSION['admin'] != "login") {
                                 <i class="fas fa-shop"></i>
                             </div>
                             Keranjang User
+                        </a>
+                        <a class="nav-link" href="akun.php">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+                            Akun User
                         </a>
                     </div>
                 </div>
@@ -100,10 +98,10 @@ if ($_SESSION['admin'] != "login") {
                             <div class="card bg-primary text-white mb-4">
                                 <div class="card-body">Barang terdaftar</div>
                                 <div class="card-body">
-                                    <h2>21</h2>
+                                    <h2><?php echo $jumlah_barang ?></h2>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="tambah_admin.php">View Details</a>
+                                    <a class="small text-white stretched-link" href="tambah_admin.php">Lihat Detail</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -112,10 +110,10 @@ if ($_SESSION['admin'] != "login") {
                             <div class="card bg-warning text-white mb-4">
                                 <div class="card-body">Barang Dalam Proses</div>
                                 <div class="card-body">
-                                    <h2>-</h2>
+                                    <h2><?php echo $jumlah_penjualan ?></h2>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#">View Details</a>
+                                    <a class="small text-white stretched-link" href="keranjang.php">Lihat Detail</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -127,7 +125,7 @@ if ($_SESSION['admin'] != "login") {
                                     <h2>-</h2>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#">View Details</a>
+                                    <a class="small text-white stretched-link" href="keranjang.php">Lihat Detail</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -144,7 +142,7 @@ if ($_SESSION['admin'] != "login") {
                                 <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                             </div>
                         </div> -->
-                        <div class="col-xl-6">
+                        <!-- <div class="col-xl-6">
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-bar me-1"></i>
@@ -152,7 +150,7 @@ if ($_SESSION['admin'] != "login") {
                                 </div>
                                 <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="card mb-4">
                         <div class="card-header">
@@ -181,7 +179,7 @@ if ($_SESSION['admin'] != "login") {
 
                                             <th scope="row"><?php echo $no++ ?></th>
                                             <td><?php echo $value['nama_hp'] ?></td>
-                                            <td><?php echo $value['harga'] ?></td>
+                                            <td>Rp.<?php echo number_format($value['harga']) ?></td>
                                             <td><?php echo $value['merek'] ?></td>
                                             <td><?php echo $value['spesifikasi'] ?></td>
                                             <td><img src="../assets/image/product/<?php echo $value['gambar'] ?>" alt="" style="max-width: 30px;"></td>

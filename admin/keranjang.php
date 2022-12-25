@@ -3,16 +3,17 @@ include "../config/koneksi.php";
 
 $product = array();
 
-$data = $koneksi->query("SELECT * FROM tb_pembelian");
+$data = $koneksi->query("SELECT * FROM tb_invoice");
 while ($setiap = $data->fetch_assoc()) {
     $hp[] = $setiap;
+    $jumlah_barang = count($hp);
 }
 
 ?>
 
 <?php
 session_start();
-if ($_SESSION['status'] != "login") {
+if ($_SESSION['admin'] != "login") {
     header("location:index_admin.php?pesan=belum_login");
 }
 ?>
@@ -29,7 +30,7 @@ if ($_SESSION['status'] != "login") {
     <title>mPhone - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="../assets/css/admin.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
 
 <body class="sb-nav-fixed">
@@ -60,7 +61,7 @@ if ($_SESSION['status'] != "login") {
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <div class="sb-sidenav-menu-heading">Utama</div>
                         <a class="nav-link" href="index_admin.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
@@ -75,9 +76,14 @@ if ($_SESSION['status'] != "login") {
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-shop" style="color: white;"></i>
                             </div>
-                            Keranjang User
+                            Daftar Pembelian
                         </a>
-
+                        <a class="nav-link" href="keranjang.php">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+                            Akun User
+                        </a>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -88,7 +94,7 @@ if ($_SESSION['status'] != "login") {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Keranjang User</h1>
+                    <h1 class="mt-4">Daftar Pembelian</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Admin </li>
                     </ol>
@@ -96,18 +102,22 @@ if ($_SESSION['status'] != "login") {
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            Daftar Keranjang Belum di Proses
+                            Daftar Pembelian User
                         </div>
                         <div class="card-body">
                             <table class="table">
                                 <thead>
-                                    <tr>
+                                    <tr style="text-align: center;">
                                         <th scope="col">No.</th>
+                                        <th scope="col">Id_barang</th>
                                         <th scope="col">Produk</th>
                                         <th scope="col">Harga</th>
                                         <th scope="col">Merek</th>
-                                        <th scope="col">Jumlah</th>
-                                        <th scope="col">Gambar</th>
+                                        <th scope="col">Metode Pembayaran</th>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">Status Pembelian</th>
+                                        <th scope="col" style="text-align: center;">Bukti Pembayaran</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -116,14 +126,18 @@ if ($_SESSION['status'] != "login") {
                                     foreach ($data as $key => $value) :
 
                                     ?>
-                                        <tr>
+                                        <tr style="text-align: center;">
 
-                                            <th scope="row"><?php echo $no++ ?></th>
+                                            <th scope="row"><?php echo number_format($no++) ?></th>
+                                            <th scope="row"><?php echo $value['id_invoice'] ?></th>
                                             <td><?php echo $value['barang'] ?></td>
-                                            <td><?php echo $value['harga'] ?></td>
+                                            <td>Rp.<?php echo number_format($value['harga']) ?></td>
                                             <td><?php echo $value['merek'] ?></td>
-                                            <td><?php echo $value['jumlah'] ?></td>
-                                            <td><img src="../assets/image/product/<?php echo $value['gambar'] ?>" alt="" style="max-width: 30px;"></td>
+                                            <td><?php echo $value['metode_pembayaran'] ?></td>
+                                            <td><?php echo $value['username'] ?></td>
+                                            <td><?php echo $value['status'] ?></td>
+                                            <td style="text-align: center;"><a href="../assets/image/bukti_pembayaran/<?php echo $value['bukti_pembayaran'] ?>"><button type="button" class="btn btn-outline-info">Lihat Bukti Pembayaran</button></td>
+                                            <td><a type="button" href="detail_pembelian.php?id=<?php echo $value['id_invoice'] ?>" class="btn btn-dark"> Lihat Detail</a></td>
 
                                         </tr>
                                     <?php endforeach ?>

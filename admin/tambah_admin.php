@@ -12,7 +12,7 @@ while ($setiap = $data->fetch_assoc()) {
 
 <?php
 session_start();
-if ($_SESSION['status'] != "login") {
+if ($_SESSION['admin'] != "login") {
     header("location:tambah_admin.php?pesan=belum_login");
 }
 ?>
@@ -28,7 +28,7 @@ if ($_SESSION['status'] != "login") {
     <title>mPhone - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="../assets/css/admin.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
 
 <body class="sb-nav-fixed">
@@ -63,7 +63,7 @@ if ($_SESSION['status'] != "login") {
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <div class="sb-sidenav-menu-heading">Utama</div>
                         <a class="nav-link" href="index_admin.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
@@ -79,6 +79,12 @@ if ($_SESSION['status'] != "login") {
                                 <i class="fas fa-shop"></i>
                             </div>
                             Keranjang User
+                        </a>
+                        <a class="nav-link" href="keranjang.php">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+                            Akun User
                         </a>
                     </div>
                 </div>
@@ -178,7 +184,7 @@ if ($_SESSION['status'] != "login") {
 
                                             <th scope="row"><?php echo $no++ ?></th>
                                             <td><?php echo $value['nama_hp'] ?></td>
-                                            <td><?php echo $value['harga'] ?></td>
+                                            <td>Rp.<?php echo number_format($value['harga']) ?></td>
                                             <td><?php echo $value['merek'] ?></td>
                                             <td><?php echo $value['spesifikasi'] ?></td>
                                             <td><img src="../assets/image/product/<?php echo $value['gambar'] ?>" alt="" style="max-width: 30px;"></td>

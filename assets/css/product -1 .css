@@ -2450,6 +2450,7 @@ progress {
 }
 .form-label {
   margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .col-form-label {

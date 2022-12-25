@@ -37,6 +37,7 @@ while ($setiap = $data->fetch_assoc()) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/product -1 .css">
+    <link rel="stylesheet" href="assets/css/menu_checkout.css">
 </head>
 
 <body>
@@ -64,8 +65,8 @@ while ($setiap = $data->fetch_assoc()) {
                             Hai <?php echo $_SESSION['username'] ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-circle-user" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Profile</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Settings</a>
+                            <li><a class="dropdown-item" href="profile_user.php"><i class="fa-solid fa-circle-user" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Profile</a></li>
+                            <li><a class="dropdown-item" href="Belanjaan.php"><i class="fa-solid fa-gear" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Pembelian Anda</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -115,7 +116,7 @@ while ($setiap = $data->fetch_assoc()) {
                                                         </div>
                                                         <div class="col-md-4 quantity">
                                                             <label for="quantity">Jumlah:</label>
-                                                            <input id="quantity" type="number" value="<?php echo $value['jumlah'] ?>" class="form-control quantity-input" readonly style="width: 24%; text-align: center;">
+                                                            <input id="quantity" type="number" value="<?php echo $value['jumlah'] ?>" class="form-control quantity-input" readonly style="width: 27%; text-align: center;">
                                                         </div>
                                                         <div class="col-md-3 price">
                                                             <span>Rp.<?php echo number_format($value['harga'] * $value['jumlah'])  ?></span>
@@ -141,20 +142,21 @@ while ($setiap = $data->fetch_assoc()) {
                                 <h3>Total Belanja Anda</h3>
                                 <div class="summary-item"><span class="text">Total</span><span class="price">Rp. <?php echo number_format($total) ?></span></div>
 
-                                <form action="">
+                                <form action="status.php" method="POST" enctype="multipart/form-data">
                                     <?php
                                     foreach ($data as $key => $value) : ?>
-                                        <input type="hidden" value="<?php echo $_SESSION['username'] ?>">
-                                        <input type="hidden" name="" id="" value="<?php echo $value['barang'] ?>">
-                                        <input type="hidden" name="" value="<?php echo $value['harga'] * $value['jumlah']  ?>">
-                                        <input type="hidden" name="" value="<?php echo $value['merek'] ?>">
-                                        <input type="hidden" name="" value="<?php echo $value['jumlah'] ?>">
+                                        <input type="hidden" name="status" value="<?php echo $value['status'] ?>">
+                                        <input type="hidden" name="user" value="<?php echo $value['username'] ?>">
+
                                     <?php endforeach ?>
-                                    <input type="hidden">
-                                    <a href="checkout_menu.php?user=<?php echo $_SESSION['username'] ?>" class="btn btn-outline-dark flex-shrink-0" type="submit" style="margin-left: 30%; margin-top: 10%;">
-                                        <i class="fa-solid fa-bag-shopping"></i>
-                                        Beli Sekarang
-                                    </a>
+                                    <!-- <input type="hidden" name="status" value="Menunggu Pembayaran" id=""> -->
+                                    <button style="margin-left: 25%;" type="submit">
+                                        <span>Beli Sekarang</span>
+                                        <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="assets/">
+                                            <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+                                            <path d="M25 39.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+                                        </svg>
+                                    </button>
 
                                 </form>
 

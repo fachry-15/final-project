@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&family=Poppins:wght@600&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #d9ecf2;
+  font-family: "Poppins", sans-serif;
+  color: #666;
+}
+
+.h2 {
+  color: #444;
+  font-family: "PT Sans", sans-serif;
+}
+
+thead {
+  font-family: "Poppins", sans-serif;
+  font-weight: bolder;
+  font-size: 20px;
+  color: #666;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+}
+
+.name {
+  display: inline-block;
+}
+
+.bg-blue {
+  background-color: #ebf5fb;
+  border-radius: 8px;
+}
+
+.fa-check,
+.fa-minus {
+  color: gray;
+}
+
+.bg-blue:hover {
+  background-color: gray;
+  color: #eee;
+  cursor: pointer;
+}
+
+.bg-blue:hover .fa-check,
+.bg-blue:hover .fa-minus {
+  background-color: #3e64ff;
+  color: #eee;
+}
+
+.table thead th,
+.table td {
+  border: none;
+}
+
+.table tbody td:first-child {
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.table tbody td:last-child {
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+#spacing-row {
+  height: 10px;
+}
+
+@media (max-width: 575px) {
+  .container {
+    width: 125%;
+    padding: 20px 10px;
+  }
+}
+
+a {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.front {
+  display: block;
+  position: relative;
+  padding: 12px 27px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  color: white;
+  background: black;
+  will-change: transform;
+  transform: translateY(-4px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+a:hover {
+  filter: brightness(110%);
+}
+
+a:hover .front {
+  transform: translateY(-6px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+a:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+a:hover .shadow {
+  transform: translateY(4px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+a:active .shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+a:focus:not(:focus-visible) {
+  outline: none;
+}

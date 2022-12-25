@@ -9,7 +9,7 @@ $setiap = $data->fetch_assoc();
 
 <?php
 session_start();
-if ($_SESSION['status'] != "login") {
+if ($_SESSION['admin'] != "login") {
     header("location:update_admin.php?pesan=belum_login");
 }
 ?>
@@ -25,7 +25,7 @@ if ($_SESSION['status'] != "login") {
     <title>mPhone - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="../assets/css/admin.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
 
 <body class="sb-nav-fixed">
@@ -50,7 +50,7 @@ if ($_SESSION['status'] != "login") {
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    <li><a class="dropdown-item" href="controller/logout-2.php">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -60,16 +60,28 @@ if ($_SESSION['status'] != "login") {
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <div class="sb-sidenav-menu-heading">Utama</div>
                         <a class="nav-link" href="index_admin.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
 
                         <div class="sb-sidenav-menu-heading">Partisi</div>
-                        <a class="nav-link" href="tambah_admin.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>
+                        <a class="nav-link" href="charts.html" style="color: white;">
+                            <div class="sb-nav-link-icon"><i class="fas fa-plus" style="color: white;"></i></div>
                             Tambah Barang
+                        </a>
+                        <a class="nav-link" href="keranjang.php">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-shop"></i>
+                            </div>
+                            Keranjang User
+                        </a>
+                        <a class="nav-link" href="keranjang.php">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+                            Akun User
                         </a>
                     </div>
                 </div>
@@ -103,9 +115,10 @@ if ($_SESSION['status'] != "login") {
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Rp.</div>
                                     </div>
-                                    <input type="text" name="harga" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Langsung Nominal tanpa Rupiah" value="<?php echo $value['harga'] ?>"><br>
-                                </div>
-                                <div class="mb-3" style="margin-bottom: 10%;">
+                                    <input type="text" name="harga" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Langsung Nominal tanpa Rupiah" value="<?php echo number_format($value['harga']) ?>">
+
+                                </div> <small class="text-muted">*Masukkan Harga Tanpa Titik atau Koma hanya angka saja</small><br>
+                                <div class="mb-3" style="margin-bottom: 10%; margin-top: 1%;">
                                     <label for="exampleFormControlTextarea1" class="form-label">Masukkan Spesifikasi</label>
                                     <textarea class="form-control" name="spek" id="spek" rows="3" value=""><?php echo $value['spesifikasi'] ?></textarea>
                                 </div>
