@@ -27,9 +27,12 @@ if ($_SESSION['status'] != "login") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/product -1 .css">
+    <link rel="stylesheet" href="assets/css/products.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
 </head>
 
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark p-3" style="background-color: #EDE1EF; font-weight: initial; font-style: oblique;">
         <div class="container-fluid">
             <a class="navbar-brand" style="color: black;" href="#">mPhone</a>
@@ -40,21 +43,23 @@ if ($_SESSION['status'] != "login") {
             <div class=" collapse navbar-collapse" id="navbarNavDropdown" style="margin-right: 5%;">
                 <ul class="navbar-nav ms-auto ">
                     <li class="nav-item">
-                        <a class="nav-link mx-2 active" aria-current="page" href="index.php" style="color: black;">Home</a>
+                        <a class="nav-link mx-2 active" aria-current="page" href="home.php" style="color: black;">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-2" href="product-menu.php" style="color: black;">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="" style="color: black;">About</a>
+                        <a class="nav-link mx-2" href="about.php" style="color: black;">About</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown" href="#" style="color: black;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Hai <?php echo $_SESSION['username'] ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="profile_user.php"><i class="fa-solid fa-circle-user" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Profile</a></li>
-                            <li><a class="dropdown-item" href="Belanjaan.php"><i class="fa-solid fa-gear" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Pembelian Anda</a>
+                            <li><a class="dropdown-item" href="profile_user.php"><i class="fa-solid fa-circle-user" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="Belanjaan.php"><i class="fa-solid fa-credit-card" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i> Pembelian Anda</a>
+                            </li>
+                            <li><a class="dropdown-item" href="riwayat.php"><i class="fa-solid fa-clock-rotate-left" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i> Riwayat Pembelian</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -82,7 +87,7 @@ if ($_SESSION['status'] != "login") {
                         <h1 class="display-5 fw-bolder"><?php echo $value['nama_hp'] ?></h1>
                         <div class="fs-5 mb-5">
                             <span>Rp.<?php echo number_format($value['harga'])  ?></span><br>
-                            <span class="text-muted">Stok : </span>
+                            <!-- <span class="text-muted">Stok : </span> -->
                         </div>
                         <p class="lead"><?php echo $value['spesifikasi'] ?></p>
                     <?php endforeach ?>
@@ -119,7 +124,7 @@ if ($_SESSION['status'] != "login") {
 
                 $product = array();
 
-                $data = $koneksi->query("SELECT * FROM products WHERE merek = 'iPhone' AND id_barang >= 4");
+                $data = $koneksi->query("SELECT * FROM products WHERE merek = 'iPhone' AND id_barang <= 4");
                 while ($setiap = $data->fetch_assoc()) {
                     $hp[] = $setiap;
                 }
@@ -131,10 +136,17 @@ if ($_SESSION['status'] != "login") {
                             <img src="assets/image/product/<?php echo $value['gambar'] ?>" class="card-img-top" alt="Apple Computer" style="margin-top: 8%; margin-left: 5%; width: 250px; align-items: center;" />
                             <div class="card-body">
                                 <div class="text-center">
-                                    <h5 class="card-title"><?php echo $value['nama_hp'] ?></h5>
+                                    <h5 class="card-title"><b><?php echo $value['nama_hp'] ?></b></h5>
                                     <p class="text-muted mb-2.5"><?php echo $value['merek'] ?></p>
-                                    <p class="text-muted mb-1">Rp.<?php echo $value['harga'] ?></p>
-                                    <a href="detail.php?id=<?php echo $value["id_barang"] ?>" type="button" class="btn" style="background-color: #EDE1EF;">Lihat Detail</a>
+                                    <p class="text-muted mb-1">Rp.<?php echo number_format($value['harga']) ?></p>
+                                    <a href="detail.php?id=<?php echo $value['id_barang'] ?>" class="cssbuttons-io-button"> Lihat Detail
+                                        <div class="icon">
+                                            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path>
+                                            </svg>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -143,11 +155,79 @@ if ($_SESSION['status'] != "login") {
             </div>
         </div>
     </section>
-    <footer class="py-5 bg-dark">
+    <footer class="footer">
         <div class="container">
-            <p class="m-0 text-center text-white"> Gurungg ges Footer e sabar</p>
+            <div class="row">
+
+
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer-about">
+                        <div class="footer-logo">
+                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                        </div>
+                        <p><b>Markas Phone</b> <br>tempat untuk cari apa yang kau cari <br>dan menemukan yang ingin kau temukan</p>
+                        <a href="#"><img src="img/payment.png" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer-widget">
+                        <h6>Produk Unggulan</h6>
+                        <ul>
+                            <li><a href="kategori/iphone.php">iPhone</a></li>
+                            <li><a href="kategori/samsung.php">Samsung</a></li>
+                            <li><a href="kategori/oppo.php">Oppo</a></li>
+                            <li><a href="kategori/pixel.php">Pixel</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-2  col-md-3 col-sm-6">
+                    <div class="footer-widget">
+                        <h6>Menu</h6>
+                        <ul>
+                            <li><a href="home.php">Home</a></li>
+                            <li><a href="product-menu.php">Product</a></li>
+                            <li><a href="Belanjaan.php">Pembelian</a></li>
+                            <li><a href="profile_user.php">Profile</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer-widget">
+                        <p style="color: white;">Selamat Datang Di</p>
+                        <a href="#">
+                            <div class="button">
+                                <div class="box">M</div>
+                                <div class="box">A</div>
+                                <div class="box">R</div>
+                                <div class="box">K</div>
+                                <div class="box">A</div>
+                                <div class="box">S</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer-copyright-text">
+                        <p>Copyright &copy; 2022 All rights reserved | <b>Markas Phone</b></p>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
+
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

@@ -54,7 +54,7 @@ if ($_SESSION['status'] != "login") {
                         <a class="nav-link mx-2" href="product-menu.php" style="color: black;">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="" style="color: black;">About</a>
+                        <a class="nav-link mx-2" href="about.php" style="color: black;">About</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown" href="#" style="color: black;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -64,7 +64,7 @@ if ($_SESSION['status'] != "login") {
                             <li><a class="dropdown-item" href="profile_user.php"><i class="fa-solid fa-circle-user" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i> Profile</a></li>
                             <li><a class="dropdown-item" href="Belanjaan.php"><i class="fa-solid fa-credit-card" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i> Pembelian Anda</a>
                             </li>
-                            <li><a class="dropdown-item" href="Belanjaan.php"><i class="fa-solid fa-clock-rotate-left" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i> Riwayat Pembelian</a>
+                            <li><a class="dropdown-item" href="riwayat.php"><i class="fa-solid fa-clock-rotate-left" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i> Riwayat Pembelian</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -264,15 +264,17 @@ if ($_SESSION['status'] != "login") {
 
                 <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
                     <div class="footer-widget">
-                        <h6>NewsLetter</h6>
-                        <div class="footer-newslatter">
-                            <p>Be the first to know about new arrivals, look books, sales & promos!</p>
-                            <form action="#">
-                                <input type="text" placeholder="Your Email">
-                                <button type="submit"><span><i class="fa fa-envelope" arial-hidden="true"></i></span></button>
-                            </form>
-                        </div>
-
+                        <p style="color: white;">Selamat Datang Di</p>
+                        <a href="#">
+                            <div class="button">
+                                <div class="box">M</div>
+                                <div class="box">A</div>
+                                <div class="box">R</div>
+                                <div class="box">K</div>
+                                <div class="box">A</div>
+                                <div class="box">S</div>
+                            </div>
+                        </a>
                     </div>
                 </div>
 

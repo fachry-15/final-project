@@ -52,30 +52,32 @@ while ($setiap = $data->fetch_assoc()) {
             <div class=" collapse navbar-collapse" id="navbarNavDropdown" style="margin-right: 5%;">
                 <ul class="navbar-nav ms-auto ">
                     <li class="nav-item">
-                        <a class="nav-link mx-2 active" aria-current="page" href="index.php" style="color: black;">Home</a>
+                        <a class="nav-link mx-2 active" aria-current="page" href="../home.php" style="color: black;">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="product-menu.php" style="color: black;">Products</a>
+                        <a class="nav-link mx-2" href="../product-menu.php" style="color: black;">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="" style="color: black;">About</a>
+                        <a class="nav-link mx-2" href="../about.php" style="color: black;">About</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown" href="#" style="color: black;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown" style="color: black;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Hai <?php echo $_SESSION['username'] ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-circle-user" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Profile</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Settings</a>
+                            <li><a class="dropdown-item" href="../profile_user.php"><i class="fa-solid fa-circle-user" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="../Belanjaan.php"><i class="fa-solid fa-credit-card" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i> Pembelian Anda</a>
+                            </li>
+                            <li><a class="dropdown-item" href="../riwayat.php"><i class="fa-solid fa-clock-rotate-left" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i> Riwayat Pembelian</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="logout.php"><i class="fa-solid fa-right-from-bracket" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Logout</a></li>
+                            <li><a class="dropdown-item" href="../logout.php"><i class="fa-solid fa-right-from-bracket" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Logout</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="cart_menu.php" style="color: black;"><i class="fa-solid fa-basket-shopping"></i></a>
+                        <a class="nav-link mx-2" href="../cart_menu.php" style="color: black;"><i class="fa-solid fa-basket-shopping"></i></a>
                     </li>
                 </ul>
             </div>
@@ -123,13 +125,13 @@ while ($setiap = $data->fetch_assoc()) {
 
         <?php
         foreach ($data as $key => $value) : ?>
-            <input type="text" name="jumlah" value="<?php echo $deret ?>">
-            <input type="text" name="username[]" value="<?php echo $value['username'] ?>">
-            <input type="text" name="barang[]" value="<?php echo $value['barang'] ?>">
-            <input type="text" name="merek[]" value="<?php echo $value['merek'] ?>" id="">
-            <input type="text" name="harga[]" value="<?php echo $value['harga'] ?>" id="">
-            <input type="text" name="gambar[]" value="<?php echo $value['gambar'] ?>">
-            <input type="text" name="status[]" value="belum mengisi data diri">
+            <input type="hidden" name="jumlah" value="<?php echo $deret ?>">
+            <input type="hidden" name="username[]" value="<?php echo $value['username'] ?>">
+            <input type="hidden" name="barang[]" value="<?php echo $value['barang'] ?>">
+            <input type="hidden" name="merek[]" value="<?php echo $value['merek'] ?>" id="">
+            <input type="hidden" name="harga[]" value="<?php echo $value['harga'] ?>" id="">
+            <input type="hidden" name="gambar[]" value="<?php echo $value['gambar'] ?>">
+            <input type="hidden" name="status[]" value="belum mengisi data diri">
         <?php endforeach ?>
 
 

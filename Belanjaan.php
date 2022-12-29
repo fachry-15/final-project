@@ -39,11 +39,13 @@ while ($setiap = $data->fetch_assoc()) {
     <link rel="stylesheet" href="assets/css/product -1 .css">
     <link rel="stylesheet" href="assets/css/menu_checkout.css">
     <link rel="stylesheet" href="assets/css/belanja.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark p-3" style="background-color: #EDE1EF; font-weight: normal; font-style: oblique;">
+
+    <nav class="navbar navbar-expand-lg navbar-dark p-3" style="background-color: #EDE1EF; font-weight: initial; font-style: oblique;">
         <div class="container-fluid">
             <a class="navbar-brand" style="color: black;" href="#">mPhone</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,21 +55,23 @@ while ($setiap = $data->fetch_assoc()) {
             <div class=" collapse navbar-collapse" id="navbarNavDropdown" style="margin-right: 5%;">
                 <ul class="navbar-nav ms-auto ">
                     <li class="nav-item">
-                        <a class="nav-link mx-2 active" aria-current="page" href="index.php" style="color: black;">Home</a>
+                        <a class="nav-link mx-2 active" aria-current="page" href="home.php" style="color: black;">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-2" href="product-menu.php" style="color: black;">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="" style="color: black;">About</a>
+                        <a class="nav-link mx-2" href="about.php" style="color: black;">About</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown" href="#" style="color: black;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Hai <?php echo $_SESSION['username'] ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="profile_user.php"><i class="fa-solid fa-circle-user" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Profile</a></li>
-                            <li><a class="dropdown-item" href="Belanjaan.php"><i class="fa-solid fa-gear" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Pembelian Anda</a>
+                            <li><a class="dropdown-item" href="profile_user.php"><i class="fa-solid fa-circle-user" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="Belanjaan.php"><i class="fa-solid fa-credit-card" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i> Pembelian Anda</a>
+                            </li>
+                            <li><a class="dropdown-item" href="riwayat.php"><i class="fa-solid fa-clock-rotate-left" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i> Riwayat Pembelian</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -82,7 +86,6 @@ while ($setiap = $data->fetch_assoc()) {
             </div>
         </div>
     </nav>
-
     <main class="page">
         <section class="shopping-cart dark">
             <div class="container">
@@ -141,6 +144,76 @@ while ($setiap = $data->fetch_assoc()) {
             </div>
         </section>
     </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer-about">
+
+                        <p><b>Markas Phone</b> <br>tempat untuk cari apa yang kau cari <br>dan menemukan yang ingin kau temukan</p>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer-widget">
+                        <h6>Produk Unggulan</h6>
+                        <ul>
+                            <li><a href="kategori/iphone.php">iPhone</a></li>
+                            <li><a href="kategori/samsung.php">Samsung</a></li>
+                            <li><a href="kategori/oppo.php">Oppo</a></li>
+                            <li><a href="kategori/pixel.php">Pixel</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-2  col-md-3 col-sm-6">
+                    <div class="footer-widget">
+                        <h6>Menu</h6>
+                        <ul>
+                            <li><a href="home.php">Home</a></li>
+                            <li><a href="product-menu.php">Product</a></li>
+                            <li><a href="Belanjaan.php">Pembelian</a></li>
+                            <li><a href="profile_user.php">Profile</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer-widget">
+                        <p style="color: white;">Selamat Datang Di</p>
+                        <a href="#">
+                            <div class="button">
+                                <div class="box">M</div>
+                                <div class="box">A</div>
+                                <div class="box">R</div>
+                                <div class="box">K</div>
+                                <div class="box">A</div>
+                                <div class="box">S</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer-copyright-text">
+                        <p>Copyright &copy; 2022 All rights reserved | <b>Markas Phone</b></p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </footer>
 </body>
 
 </body>

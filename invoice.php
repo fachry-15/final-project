@@ -121,7 +121,7 @@ if ($_SESSION['status'] != "login") {
                     </div>
                     <div class="d-grid gap-2">
                         <button class="btn btn-dark" type="button"><i class="fa-solid fa-box"></i> Barang Telah Diterima</button>
-                        <button class="btn btn-secondary" type="button"><i class="fa-regular fa-file-lines"></i> Cetak Invoice</button>
+                        <a href="Belanjaan.php" class="btn btn-secondary" type="button"><i class="fa-solid fa-angle-left"></i> Kembali</a href="Belanjaan.php">
                     </div>
                 </div>
             </div>

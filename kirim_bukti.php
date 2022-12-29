@@ -48,21 +48,23 @@ while ($setiap = $data->fetch_assoc()) {
             <div class=" collapse navbar-collapse" id="navbarNavDropdown" style="margin-right: 5%;">
                 <ul class="navbar-nav ms-auto ">
                     <li class="nav-item">
-                        <a class="nav-link mx-2 active" aria-current="page" href="index.php" style="color: black;">Home</a>
+                        <a class="nav-link mx-2 active" aria-current="page" href="home.php" style="color: black;">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-2" href="product-menu.php" style="color: black;">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="" style="color: black;">About</a>
+                        <a class="nav-link mx-2" href="about.php" style="color: black;">About</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown" href="#" style="color: black;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Hai <?php echo $_SESSION['username'] ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-circle-user" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Profile</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i>Settings</a>
+                            <li><a class="dropdown-item" href="profile_user.php"><i class="fa-solid fa-circle-user" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="Belanjaan.php"><i class="fa-solid fa-credit-card" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i> Pembelian Anda</a>
+                            </li>
+                            <li><a class="dropdown-item" href="riwayat.php"><i class="fa-solid fa-clock-rotate-left" style="font-size: 14px; margin-right: 6px; margin-bottom: 4px;"></i> Riwayat Pembelian</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -89,7 +91,7 @@ while ($setiap = $data->fetch_assoc()) {
                     </div>
                     <?php foreach ($data as $key => $value) : ?>
                         <div class="alert alert-dark" role="alert">
-                            Biaya Yang Harus dibayar Rp.<?php echo number_format($value['harga']) ?> menggunakan pembayaran <?php echo $value['metode_pembayaran'] ?>
+                            Biaya Yang Harus dibayar Rp.<?php echo number_format($value['harga']) ?> menggunakan pembayaran <?php echo $value['metode_pembayaran'] ?> Kirim ke <?php echo $value['target_pembayaran'] ?>
                         </div>
                     <?php endforeach ?>
                     <form></form>
@@ -109,7 +111,7 @@ while ($setiap = $data->fetch_assoc()) {
                 <input type="text" name="rekening" class="form-control" value="<?php echo $value['no_rekening'] ?>">
                 <label for="" class="form-label">Kirim Bukti Pembayaran</label>
                 <input type="file" name="gambar" class="form-control" id="">
-                <input type="text" name="status" value="sudah mengirim bukti pembayaran" id="">
+                <input type="hidden" name="status" value="sudah mengirim bukti pembayaran" id="">
                 <?php
                 foreach ($data as $key => $value) : ?>
                     <input type="hidden" name="id_barang" value="<?php echo $value['id_invoice'] ?>"> <br>
