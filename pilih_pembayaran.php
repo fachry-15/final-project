@@ -139,7 +139,7 @@ while ($setiap = $data->fetch_assoc()) {
                             <div class="card-body">
                                 <h5 class="card-title"><b>Pembayaran E-Wallet Dana</b></h5>
                                 <img src="assets/image/logo_pembayaran/dana.svg" alt="" style="max-width: 80px;margin-left: 2px;  margin-top: 2.5%; margin-bottom: 3%; border-radius: 3%;"> <br>
-                                <a class="pilih" href="" style="width: 17rem;">
+                                <a class="pilih" href="pembayaran/dana_barang.php" style="width: 17rem;">
                                     <span class="circle" aria-hidden="true">
                                         <span class="icon arrow"></span>
                                     </span>
