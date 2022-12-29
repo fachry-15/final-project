@@ -131,7 +131,7 @@ if ($_SESSION['admin'] != "login") {
                             <input type="hidden" value="<?php echo $setiap['id_invoice'] ?>" name="barang">
                             <h5 style="margin-top: 3%;">Ubah Status Pembelian</h5>
                             <select class="form-select" aria-label="Default select example" name="status">
-                                <option selected>Pilih Status Pembelian</option>
+                                <option selected><?php echo $setiap['status'] ?></option>
                                 <option value="Sudah Dikonfirmasi">Sudah Dikonfirmasi</option>
                                 <option value="Barang Sudah Dikirim">Barang Sudah Dikirim</option>
                             </select>
@@ -150,8 +150,11 @@ if ($_SESSION['admin'] != "login") {
                                 <option value="Si-Cepat">Si Cepat</option>
                             </select>
                             <h5 style="margin-top: 3%;">Kirim Resi Barang Yang Dikirim</h5>
-                            <input type="text" class="form-control" name="resi" placeholder="Masukkan Resi Pengiriman" id="">
+                            <input type="text" class="form-control" name="resi" placeholder="Masukkan Resi Pengiriman" id="" value="<?php echo $setiap['resi'] ?>">
                             <small class="text-muted" style="font-size: 12px;">*Pastikan Barang Dikirim Terlebih Dahulu Kemudian Mengisi Resi</small><br>
+                            <h5 style="margin-top: 3%;">Tanggal Pengiriman</h5>
+                            <input type="date" class="form-control" name="tanggal_kirim" placeholder="Masukkan Resi Pengiriman" id="" value="<?php echo $setiap['resi'] ?>">
+
                             <button type="submit" class="btn btn-success" style="margin-top: 1%;"><i class="fa-solid fa-truck-fast"></i> Konfirmasi Pengiriman</button>
                         </form>
                         <h2 style="margin-top: 4%;"><b>Status Pengiriman Barang</b></h2>
@@ -179,9 +182,15 @@ if ($_SESSION['admin'] != "login") {
                                             <span><?php echo $setiap['resi'] ?></span>
                                         </div>
                                         <div class="form-group" style="margin-top: 4%;">
+                                            <h5>Tanggal Pengiriman</h5>
+                                            <span><?php echo $setiap['tanggal_pengiriman'] ?></span>
+                                        </div>
+                                        <div class="form-group" style="margin-top: 4%;">
                                             <form action="controller/barangditerima.php" method="POST">
                                                 <h5>Konfirmasi Pengiriman</h5>
-                                                <input type="hidden" name="diterima" value="Barang Sudah Diterima">
+                                                <input type="hidden" name="id" value="<?php echo $setiap['id_invoice'] ?>">
+                                                <input type="hidden" name="status" value="Barang Sudah Diterima">
+                                                <input type="hidden" name="kategori" value="Histori">
                                                 <button type="submit" class="btn btn-success"><i class="fa-solid fa-boxes-packing"></i> Barang Sudah Diterima Customer</button>
                                             </form>
                                         </div>

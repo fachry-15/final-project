@@ -108,7 +108,7 @@ while ($setiap = $data->fetch_assoc()) {
                             <div class="card-body">
                                 <h5 class="card-title"><b>Pembayaran E-Wallet Shopeepay</b></h5>
                                 <img src="assets/image/logo_pembayaran/shopee.svg" alt="" style="max-width: 80px; margin-top: 2%; margin-bottom: 2%;"> <br>
-                                <a class="pilih" href="" style="width: 21rem;">
+                                <a class="pilih" href="pembayaran/shopee_barang.php" style="width: 21rem;">
                                     <span class="circle" aria-hidden="true">
                                         <span class="icon arrow"></span>
                                     </span>
@@ -124,7 +124,7 @@ while ($setiap = $data->fetch_assoc()) {
                             <div class="card-body">
                                 <h5 class="card-title"><b>Pembayaran E-Wallet Gopay</b></h5>
                                 <img src="assets/image/logo_pembayaran/gopay.svg" alt="" style="max-width: 80px; margin-top: 2.5%; margin-bottom: 2.5%;"> <br>
-                                <a class="pilih" href="" style="width: 18rem;">
+                                <a class="pilih" href="pembayaran/gopay_barang.php" style="width: 18rem;">
                                     <span class="circle" aria-hidden="true">
                                         <span class="icon arrow"></span>
                                     </span>

@@ -20,13 +20,13 @@ if ($cek > 0) {
     $_SESSION['username'] = $username;
     $_SESSION['status'] = "login";
 
-    header("location:index.php");
+    header("location:home.php");
 } else {
     echo "
     <script>
         alert('Coba di Cek Lagi Sandinya');
 
-        // window.location = 'login_user.php';
+        // window.location = 'index.php';
     </script>
 ";
 }

@@ -351,64 +351,6 @@ ul li img {
 }
 /* main */
 
-/* css untuk footer */
-
-footer {
-  background-color: #f5f5f7;
-  padding: 40px;
-  height: 1000px;
-  color: #1d1d1f;
-}
-
-.logo-footer {
-  width: 50px;
-  margin-bottom: 10px;
-}
-
-.txt-copy {
-  margin: 0;
-}
-
-.txt-copy a {
-  color: #fff;
-}
-
-.txt-copy a:hover {
-  text-decoration: underline;
-}
-.footer-container {
-  display: flex;
-}
-.footer-list {
-  float: left;
-  width: 30%;
-  margin: 0 auto;
-}
-
-.footer-list p a {
-  color: #1d1d1f;
-}
-
-.footer-list p a:hover {
-  text-decoration: underline;
-}
-
-.clear-footer {
-  clear: left;
-}
-.foot-notes ul li {
-  color: #86868b;
-  height: 2em;
-  margin: 10px 0;
-  text-align: left;
-}
-.footer-container,
-.footer-list-container {
-  width: 70%;
-  margin: 0 auto;
-}
-/* footer */
-
 /* responsive */
 .menu-logo {
   visibility: hidden;

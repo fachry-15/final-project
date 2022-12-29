@@ -43,7 +43,7 @@ while ($setiap = $data->fetch_assoc()) {
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark p-3" style="background-color: #EDE1EF; font-weight: initial; font-style: oblique;">
+    <nav class="navbar navbar-expand-lg navbar-dark p-3" style="background-color: #EDE1EF; font-weight: normal; font-style: oblique;">
         <div class="container-fluid">
             <a class="navbar-brand" style="color: black;" href="#">mPhone</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,19 +94,20 @@ while ($setiap = $data->fetch_assoc()) {
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
-                                <tr>
+                                <tr style="text-align: center;">
                                     <th scope="col">Gambar</th>
                                     <th scope="col">Barang Belanjaan</th>
                                     <th scope="col">Harga</th>
                                     <th scope="col">Metode Pembayaran</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Bukti Pembayaran</th>
+                                    <th scope="col" style="text-align: center;">Bukti Pembayaran</th>
+                                    <th scope="col">Detail Pembelian</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr class="bg-blue">
-                                    <?php
+                            <tbody> <?php
                                     foreach ($data as $key => $value) : ?>
+                                    <tr class="bg-blue" style="text-align: center;">
+
                                         <td><img src="assets/image/product/<?php echo $value['gambar_barang'] ?>" alt=""></td>
                                         <td class="pt-3">
                                             <b><?php echo $value['barang'] ?></b>
@@ -114,7 +115,7 @@ while ($setiap = $data->fetch_assoc()) {
                                         <td class="pt-3 mt-1">Rp.<?php echo number_format($value['harga']) ?></td>
                                         <td class="pt-3"><?php echo $value['metode_pembayaran'] ?></td>
                                         <td class="pt-3"><?php echo $value['status'] ?></td>
-                                        <td class="pt-3" style="text-align: center; padding-left: 40px;">
+                                        <td class="pt-3" style="text-align: center;">
                                             <a href="kirim_bukti.php?id=<?php echo $value['id_invoice'] ?>" style="text-decoration: none;">
                                                 <span class="shadow"></span>
                                                 <span class="edge"></span>
@@ -122,8 +123,17 @@ while ($setiap = $data->fetch_assoc()) {
                                                 </span>
                                             </a>
                                         </td>
-                                    <?php endforeach ?>
-                                </tr>
+                                        <td class="pt-3">
+                                            <a href="invoice.php?id=<?php echo $value['id_invoice'] ?>" style="text-decoration: none;">
+                                                <span class="shadow"></span>
+                                                <span class="edge"></span>
+                                                <span class="front text">Detail
+                                                </span>
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                <?php endforeach ?>
                             </tbody>
                         </table>
                     </div>
