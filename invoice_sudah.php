@@ -10,7 +10,7 @@ $setiap = $data->fetch_assoc();
 <?php
 session_start();
 if ($_SESSION['status'] != "login") {
-    header("location:index.php?pesan=belum_login");
+    header("location:update_admin.php?pesan=belum_login");
 }
 ?>
 <!DOCTYPE html>
@@ -120,14 +120,7 @@ if ($_SESSION['status'] != "login") {
                         </div>
                     </div>
                     <div class="d-grid gap-2">
-                        <form action="diterima.php" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="id" value="<?php echo $setiap['id_invoice'] ?>">
-                            <input type="hidden" name="status" value="Sudah Diterima">
-                            <input type="hidden" name="kategori" value="Histori">
-                            <button class="btn btn-dark" type="submit" style="width: 100%;"><i class="fa-solid fa-box"></i> Barang Telah Diterima</button>
-                        </form>
-
-                        <a href="Belanjaan.php" class="btn btn-secondary" type="button"><i class="fa-solid fa-angle-left"></i> Kembali</a href="Belanjaan.php">
+                        <a href="riwayat.php" class="btn btn-secondary" type="button"><i class="fa-solid fa-angle-left"></i> Kembali</a href="Belanjaan.php">
                     </div>
                 </div>
             </div>

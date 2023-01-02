@@ -9,7 +9,7 @@ if ($_SESSION['status'] != "login") {
 
 $product = array();
 
-$data = $koneksi->query("SELECT * FROM tb_invoice WHERE username = '$user' AND kategori = ''");
+$data = $koneksi->query("SELECT * FROM tb_invoice WHERE username = '$user' AND kategori = 'histori'");
 while ($setiap = $data->fetch_assoc()) {
     $hp[] = $setiap;
     // $jumlah = $setiap['jumlah'];
@@ -90,7 +90,7 @@ while ($setiap = $data->fetch_assoc()) {
         <section class="shopping-cart dark">
             <div class="container">
                 <div class="block-heading">
-                    <h1 style="color: black; font-size: 60px;"><b>Belanjaan Anda</b></h1>
+                    <h1 style="color: black; font-size: 60px;"><b>Riwayat Belanja Anda</b></h1>
                 </div>
 
                 <div class="container rounded mt-5 bg-white p-md-5">
@@ -103,7 +103,6 @@ while ($setiap = $data->fetch_assoc()) {
                                     <th scope="col">Harga</th>
                                     <th scope="col">Metode Pembayaran</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col" style="text-align: center;">Bukti Pembayaran</th>
                                     <th scope="col">Detail Pembelian</th>
                                 </tr>
                             </thead>
@@ -118,16 +117,9 @@ while ($setiap = $data->fetch_assoc()) {
                                         <td class="pt-3 mt-1">Rp.<?php echo number_format($value['harga']) ?></td>
                                         <td class="pt-3"><?php echo $value['metode_pembayaran'] ?></td>
                                         <td class="pt-3"><?php echo $value['status'] ?></td>
-                                        <td class="pt-3" style="text-align: center;">
-                                            <a href="kirim_bukti.php?id=<?php echo $value['id_invoice'] ?>" style="text-decoration: none;">
-                                                <span class="shadow"></span>
-                                                <span class="edge"></span>
-                                                <span class="front text">Kirim Bukti
-                                                </span>
-                                            </a>
-                                        </td>
+
                                         <td class="pt-3">
-                                            <a href="invoice.php?id=<?php echo $value['id_invoice'] ?>" style="text-decoration: none;">
+                                            <a href="invoice_sudah.php?id=<?php echo $value['id_invoice'] ?>" style="text-decoration: none;">
                                                 <span class="shadow"></span>
                                                 <span class="edge"></span>
                                                 <span class="front text">Detail

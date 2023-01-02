@@ -3,4 +3,4 @@
 session_start();
 
 session_destroy();
-header("location:login_user.php?pesan=anda sudah logout");
+header("location:index.php?pesan=anda sudah logout");
